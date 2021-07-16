@@ -68,6 +68,15 @@ double DotProduct(Tuple a, Tuple b)
 	return a.x() * b.x() + a.y() * b.y() + a.z() * b.z() + a.w() * b.w();
 }
 
+Tuple CrossProduct(Tuple a, Tuple b)
+{
+	auto x = a.y() * b.z() - a.z() * b.y();
+	auto y = a.z() * b.x() - a.x() * b.z();
+	auto z = a.x() * b.y() - a.y() * b.x();
+
+	return Tuple(x, y, z, 0);
+}
+
 // operator overloads
 Tuple operator+(Tuple a, Tuple b)
 {

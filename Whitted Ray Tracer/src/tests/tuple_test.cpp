@@ -235,6 +235,21 @@ namespace {
 		
 		EXPECT_DOUBLE_EQ(dot_product, 20);
 	}
+
+	TEST(TupleTest, CrossProduct) {
+
+		const auto a = Vector(1, 2, 3);
+
+		const auto b = Vector(2, 3, 4);
+
+		// a x b
+		auto cross_product = CrossProduct(a, b);
+		EXPECT_TRUE(cross_product==Vector(-1, 2, -1));
+
+		// b x a
+		cross_product = CrossProduct(b, a);
+		EXPECT_TRUE(cross_product == Vector(1, -2, 1));
+	}
 	
 	
 	

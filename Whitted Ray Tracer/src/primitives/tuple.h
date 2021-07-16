@@ -31,6 +31,7 @@ Tuple Vector(double x, double y, double z);
 double Magnitude(Tuple a);
 Tuple Normalize(Tuple a);
 double DotProduct(Tuple a, Tuple b);
+Tuple CrossProduct(Tuple a, Tuple b);
 
 // operator overloading
 Tuple operator+(Tuple a, Tuple b);
