@@ -49,6 +49,26 @@ Tuple Vector(const double x, const double y, const double z)
 	return Tuple(x, y, z, 0.0);
 }
 
+double Magnitude(Tuple a)
+{
+	return std::sqrt(a.x() * a.x() + a.y() * a.y() + a.z() * a.z());
+}
+
+Tuple Normalize(Tuple a)
+{
+	const auto factor = 1 / Magnitude(a);
+
+	const auto normalized = a * factor;
+
+	return normalized;
+}
+
+double DotProduct(Tuple a, Tuple b)
+{
+	return a.x() * b.x() + a.y() * b.y() + a.z() * b.z() + a.w() * b.w();
+}
+
+// operator overloads
 Tuple operator+(Tuple a, Tuple b)
 {
 	const auto x = a.x() + b.x();
@@ -67,6 +87,11 @@ Tuple operator-(Tuple a, Tuple b)
 	const auto w = a.w() - b.w();
 
 	return Tuple(x, y, z, w);
+}
+
+Tuple operator-(Tuple a)
+{
+	return Tuple(-1*a.x(), -1*a.y(), -1*a.z(), a.w());
 }
 
 Tuple operator*(Tuple a, double factor)

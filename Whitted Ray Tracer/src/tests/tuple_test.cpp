@@ -71,8 +71,8 @@ namespace {
 
 	TEST(TupleTest, PointSubtraction) {
 
-		auto a = Tuple(3, 2, 1, 1);
-		auto b = Tuple(5, 6, 7, 1);
+		auto a = Point(3, 2, 1);
+		auto b = Point(5, 6, 7);
 
 		// test overload on "-" operator
 		auto c = a - b;
@@ -87,8 +87,8 @@ namespace {
 
 	TEST(TupleTest, VectorPointSubtraction) {
 
-		auto a = Tuple(3, 2, 1, 1);
-		auto b = Tuple(5, 6, 7, 0);
+		auto a = Point(3, 2, 1);
+		auto b = Vector(5, 6, 7);
 
 		// test overload on "-" operator
 		auto c = a - b;
@@ -103,8 +103,8 @@ namespace {
 
 	TEST(TupleTest, VectorSubtraction) {
 
-		auto a = Tuple(3, 2, 1, 0);
-		auto b = Tuple(5, 6, 7, 0);
+		auto a = Vector(3, 2, 1);
+		auto b = Vector(5, 6, 7);
 
 		// test overload on "-" operator
 		auto c = a - b;
@@ -115,6 +115,125 @@ namespace {
 		EXPECT_DOUBLE_EQ(c.w(), 0);
 
 		EXPECT_TRUE(c.IsVector());
+	}
+
+	TEST(TupleTest, VectorNegation) {
+
+		auto a = Vector(1, -2, 3);
+
+		auto b = -a;
+
+		EXPECT_DOUBLE_EQ(b.x(), -1);
+		EXPECT_DOUBLE_EQ(b.y(), 2);
+		EXPECT_DOUBLE_EQ(b.z(), -3);
+		EXPECT_DOUBLE_EQ(b.w(), 0);
+
+		EXPECT_TRUE(b.IsVector());
+	}
+
+	TEST(TupleTest, VectorScalarScaling) {
+
+		auto a = Vector(1, -2, 3);
+
+		auto b = a*3.5;
+
+		EXPECT_DOUBLE_EQ(b.x(), 3.5);
+		EXPECT_DOUBLE_EQ(b.y(), -7);
+		EXPECT_DOUBLE_EQ(b.z(), 10.5);
+		EXPECT_DOUBLE_EQ(b.w(), 0);
+
+		EXPECT_TRUE(b.IsVector());
+	}
+
+	TEST(TupleTest, VectorFractionScaling) {
+
+		auto a = Vector(1, -2, 3);
+
+		auto b = a * 0.5;
+
+		EXPECT_DOUBLE_EQ(b.x(), 0.5);
+		EXPECT_DOUBLE_EQ(b.y(), -1);
+		EXPECT_DOUBLE_EQ(b.z(), 1.5);
+		EXPECT_DOUBLE_EQ(b.w(), 0);
+
+		EXPECT_TRUE(b.IsVector());
+	}
+
+	TEST(TupleTest, VectorDivision) {
+
+		auto a = Vector(1, -2, 3);
+
+		auto b = a / 2;
+
+		EXPECT_DOUBLE_EQ(b.x(), 0.5);
+		EXPECT_DOUBLE_EQ(b.y(), -1);
+		EXPECT_DOUBLE_EQ(b.z(), 1.5);
+		EXPECT_DOUBLE_EQ(b.w(), 0);
+
+		EXPECT_TRUE(b.IsVector());
+	}
+
+	TEST(TupleTest, VectorMagnitude) {
+
+		auto a = Vector(1, 0, 0);
+		auto b = Vector(0, 1, 0);
+		auto c = Vector(0, 0, 1);
+		auto d = Vector(1, 2, 3);
+		auto e = Vector(-1, -2, -3);
+
+		auto magnitude = Magnitude(a);
+		EXPECT_DOUBLE_EQ(magnitude, 1);
+
+		magnitude = Magnitude(b);
+		EXPECT_DOUBLE_EQ(magnitude, 1);
+
+		magnitude = Magnitude(c);
+		EXPECT_DOUBLE_EQ(magnitude, 1);
+
+		magnitude = Magnitude(d);
+		EXPECT_DOUBLE_EQ(magnitude, std::sqrt(14));
+
+		magnitude = Magnitude(e);
+		EXPECT_DOUBLE_EQ(magnitude, std::sqrt(14));
+	}
+
+	TEST(TupleTest, VectorNormalization) {
+		
+		auto a = Vector(4, 0, 0);
+
+		auto b = Normalize(a);
+
+		EXPECT_DOUBLE_EQ(b.x(), 1);
+		EXPECT_DOUBLE_EQ(b.y(), 0);
+		EXPECT_DOUBLE_EQ(b.z(), 0);
+
+		EXPECT_DOUBLE_EQ(Magnitude(b), 1);
+
+		EXPECT_TRUE(b.IsVector());
+
+		a = Vector(1, 2, 3);
+
+		b = Normalize(a);
+
+		EXPECT_DOUBLE_EQ(b.x(), 1 / std::sqrt(14));
+		EXPECT_DOUBLE_EQ(b.y(), 2 / std::sqrt(14));
+		EXPECT_DOUBLE_EQ(b.z(), 3 / std::sqrt(14));
+
+		EXPECT_DOUBLE_EQ(Magnitude(b), 1);
+
+		EXPECT_TRUE(b.IsVector());
+		
+	}
+
+	TEST(TupleTest, DotProduct) {
+		
+		const auto a = Vector(1, 2, 3);
+
+		const auto b = Vector(2, 3, 4);
+
+		const auto dot_product = DotProduct(a, b);
+		
+		EXPECT_DOUBLE_EQ(dot_product, 20);
 	}
 	
 	

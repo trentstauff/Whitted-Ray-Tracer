@@ -1,6 +1,8 @@
 #ifndef TUPLE
 #define TUPLE
 
+#include <cmath>
+
 class Tuple
 {
 private:
@@ -26,9 +28,14 @@ public:
 Tuple Point(double x, double y, double z);
 Tuple Vector(double x, double y, double z);
 
+double Magnitude(Tuple a);
+Tuple Normalize(Tuple a);
+double DotProduct(Tuple a, Tuple b);
+
 // operator overloading
 Tuple operator+(Tuple a, Tuple b);
 Tuple operator-(Tuple a, Tuple b);
+Tuple operator-(Tuple a);
 Tuple operator*(Tuple a, double factor);
 Tuple operator/(Tuple a, double factor);
 bool operator==(Tuple a, Tuple b);
