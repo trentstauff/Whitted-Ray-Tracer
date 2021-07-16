@@ -63,8 +63,8 @@ namespace {
 		// test overload on "+" operator
 		auto c = a + b;
 		
-		EXPECT_DOUBLE_EQ(c.x(), 5);
-		EXPECT_DOUBLE_EQ(c.y(), -1);
+		EXPECT_DOUBLE_EQ(c.x(), 1);
+		EXPECT_DOUBLE_EQ(c.y(), 1);
 		EXPECT_DOUBLE_EQ(c.z(), 6);
 		EXPECT_DOUBLE_EQ(c.w(), 1);
 	}
