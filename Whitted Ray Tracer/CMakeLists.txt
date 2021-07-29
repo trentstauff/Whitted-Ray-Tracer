@@ -28,17 +28,17 @@ enable_testing()
 add_library(
 	primitives
 	"src/primitives/tuple.cpp"
-)
+ "src/primitives/colour.cpp" "src/primitives/colour.h")
 
 add_library(
 	helpers
 	"src/helpers.cpp"
-)
+ "src/primitives/colour.cpp" "src/primitives/colour.h")
 
 
 add_executable(tests
   "src/tests/tuple_test.cpp"
-)
+ "src/primitives/colour.cpp" "src/primitives/colour.h")
 
 target_link_libraries(tests gtest_main)
 target_link_libraries(tests primitives)

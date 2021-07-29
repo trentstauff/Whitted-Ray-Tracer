@@ -41,5 +41,4 @@ Tuple operator*(Tuple a, double factor);
 Tuple operator/(Tuple a, double factor);
 bool operator==(Tuple a, Tuple b);
 
-
 #endif
