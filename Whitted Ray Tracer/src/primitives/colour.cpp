@@ -21,3 +21,18 @@ double Colour::b() const
 {
 	return _b;
 }
+
+Colour operator+(Colour a, Colour b)
+{
+	return Colour(a.r() + b.r(), a.g() + b.g(), a.b() + b.b());
+}
+
+Colour operator-(Colour a, Colour b)
+{
+	return Colour(a.r() - b.r(), a.g() - b.g(), a.b() - b.b());
+}
+
+Colour operator*(Colour a, double factor)
+{
+	return Colour(a.r() * factor, a.g() * factor, a.b() * factor);
+}

@@ -1,8 +1,6 @@
 #ifndef COLOUR
 #define COLOUR
 
-#include <cmath>
-
 class Colour
 {
 private:
@@ -18,5 +16,10 @@ public:
 	double g() const;
 	double b() const;
 };
+
+Colour operator+(Colour a, Colour b);
+Colour operator-(Colour a, Colour b);
+Colour operator*(Colour a, double factor);
+Colour operator/(Colour a, double factor);
 
 #endif
