@@ -11,8 +11,8 @@ namespace {
 		EXPECT_DOUBLE_EQ(tuple.z(), 3.1);
 		EXPECT_DOUBLE_EQ(tuple.w(), 1.0);
 
-		EXPECT_TRUE(tuple.IsPoint());
-		EXPECT_FALSE(tuple.IsVector());
+		EXPECT_TRUE(tuple.is_point());
+		EXPECT_FALSE(tuple.is_vector());
 	}
 
 	TEST(TupleTest, VectorInit) {
@@ -24,8 +24,8 @@ namespace {
 		EXPECT_DOUBLE_EQ(tuple.z(), 3.1);
 		EXPECT_DOUBLE_EQ(tuple.w(), 0.0);
 
-		EXPECT_TRUE(tuple.IsVector());
-		EXPECT_FALSE(tuple.IsPoint());
+		EXPECT_TRUE(tuple.is_vector());
+		EXPECT_FALSE(tuple.is_point());
 	}
 
 	TEST(TupleTest, PointFunc) {
@@ -37,8 +37,8 @@ namespace {
 		EXPECT_DOUBLE_EQ(point.z(), 3.1);
 		EXPECT_DOUBLE_EQ(point.w(), 1.0);
 
-		EXPECT_TRUE(point.IsPoint());
-		EXPECT_FALSE(point.IsVector());
+		EXPECT_TRUE(point.is_point());
+		EXPECT_FALSE(point.is_vector());
 		
 	}
 
@@ -51,8 +51,8 @@ namespace {
 		EXPECT_DOUBLE_EQ(vector.z(), 3.1);
 		EXPECT_DOUBLE_EQ(vector.w(), 0.0);
 
-		EXPECT_TRUE(vector.IsVector());
-		EXPECT_FALSE(vector.IsPoint());
+		EXPECT_TRUE(vector.is_vector());
+		EXPECT_FALSE(vector.is_point());
 	}
 
 	TEST(TupleTest, Addition) {
@@ -82,7 +82,7 @@ namespace {
 		EXPECT_DOUBLE_EQ(c.z(), -6);
 		EXPECT_DOUBLE_EQ(c.w(), 0);
 
-		EXPECT_TRUE(c.IsVector());
+		EXPECT_TRUE(c.is_vector());
 	}
 
 	TEST(TupleTest, VectorPointSubtraction) {
@@ -98,7 +98,7 @@ namespace {
 		EXPECT_DOUBLE_EQ(c.z(), -6);
 		EXPECT_DOUBLE_EQ(c.w(), 1);
 
-		EXPECT_TRUE(c.IsPoint());
+		EXPECT_TRUE(c.is_point());
 	}
 
 	TEST(TupleTest, VectorSubtraction) {
@@ -114,7 +114,7 @@ namespace {
 		EXPECT_DOUBLE_EQ(c.z(), -6);
 		EXPECT_DOUBLE_EQ(c.w(), 0);
 
-		EXPECT_TRUE(c.IsVector());
+		EXPECT_TRUE(c.is_vector());
 	}
 
 	TEST(TupleTest, VectorNegation) {
@@ -128,7 +128,7 @@ namespace {
 		EXPECT_DOUBLE_EQ(b.z(), -3);
 		EXPECT_DOUBLE_EQ(b.w(), 0);
 
-		EXPECT_TRUE(b.IsVector());
+		EXPECT_TRUE(b.is_vector());
 	}
 
 	TEST(TupleTest, VectorScalarScaling) {
@@ -142,7 +142,7 @@ namespace {
 		EXPECT_DOUBLE_EQ(b.z(), 10.5);
 		EXPECT_DOUBLE_EQ(b.w(), 0);
 
-		EXPECT_TRUE(b.IsVector());
+		EXPECT_TRUE(b.is_vector());
 	}
 
 	TEST(TupleTest, VectorFractionScaling) {
@@ -156,7 +156,7 @@ namespace {
 		EXPECT_DOUBLE_EQ(b.z(), 1.5);
 		EXPECT_DOUBLE_EQ(b.w(), 0);
 
-		EXPECT_TRUE(b.IsVector());
+		EXPECT_TRUE(b.is_vector());
 	}
 
 	TEST(TupleTest, VectorDivision) {
@@ -170,7 +170,7 @@ namespace {
 		EXPECT_DOUBLE_EQ(b.z(), 1.5);
 		EXPECT_DOUBLE_EQ(b.w(), 0);
 
-		EXPECT_TRUE(b.IsVector());
+		EXPECT_TRUE(b.is_vector());
 	}
 
 	TEST(TupleTest, VectorMagnitude) {
@@ -209,7 +209,7 @@ namespace {
 
 		EXPECT_DOUBLE_EQ(Magnitude(b), 1);
 
-		EXPECT_TRUE(b.IsVector());
+		EXPECT_TRUE(b.is_vector());
 
 		a = Vector(1, 2, 3);
 
@@ -221,7 +221,7 @@ namespace {
 
 		EXPECT_DOUBLE_EQ(Magnitude(b), 1);
 
-		EXPECT_TRUE(b.IsVector());
+		EXPECT_TRUE(b.is_vector());
 		
 	}
 

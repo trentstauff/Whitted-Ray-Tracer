@@ -12,6 +12,15 @@ endif()
 # GoogleTest requires at least C++11
 set(CMAKE_CXX_STANDARD 11)
 
+SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "C:/boost_1_76_0")
+SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "C:/boost_1_76_0/stage/lib")
+
+FIND_PACKAGE(Boost)
+IF (Boost_FOUND)
+    INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
+    ADD_DEFINITIONS( "-DHAS_BOOST" )
+ENDIF()
+
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -36,15 +45,22 @@ add_library(
 	"src/helpers.cpp"
 )
 
+add_library(
+	canvas
+	"src/canvas/canvas.cpp"
+)
+
 
 add_executable(tests
 	"src/tests/tuple_test.cpp"
 	"src/tests/colour_test.cpp"
+	"src/tests/canvas_test.cpp"
 )
 
 target_link_libraries(tests gtest_main)
 target_link_libraries(tests primitives)
 target_link_libraries(tests helpers)
+target_link_libraries(tests canvas)
 
 include(GoogleTest)
 gtest_discover_tests(tests)

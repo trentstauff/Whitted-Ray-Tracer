@@ -29,12 +29,12 @@ double Tuple::w() const
 	return _w;
 }
 
-bool Tuple::IsPoint() const
+bool Tuple::is_point() const
 {
 	return _w == 1.0;
 }
 
-bool Tuple::IsVector() const
+bool Tuple::is_vector() const
 {
 	return _w == 0.0;
 }

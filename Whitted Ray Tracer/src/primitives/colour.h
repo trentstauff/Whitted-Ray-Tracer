@@ -9,6 +9,7 @@ private:
 	double _b;
 
 public:
+	Colour();
 	Colour(double red, double green, double blue);
 	~Colour() = default;
 
@@ -20,6 +21,7 @@ public:
 Colour operator+(Colour a, Colour b);
 Colour operator-(Colour a, Colour b);
 Colour operator*(Colour a, double factor);
-Colour operator/(Colour a, double factor);
+Colour operator*(Colour a, Colour b);
+bool operator==(Colour a, Colour b);
 
 #endif

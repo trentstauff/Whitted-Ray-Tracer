@@ -20,8 +20,8 @@ public:
 	double z() const;
 	double w() const;
 
-	bool IsVector() const;
-	bool IsPoint() const;
+	bool is_vector() const;
+	bool is_point() const;
 	
 };
 
