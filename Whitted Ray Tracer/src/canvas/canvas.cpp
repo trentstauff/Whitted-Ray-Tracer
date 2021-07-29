@@ -108,3 +108,12 @@ void Canvas::fill(Colour colour)
 		_canvas[i] = colour;
 	}
 }
+
+void Canvas::save()
+{
+	std::string ppm = canvas_to_ppm();
+	
+	std::ofstream file("C:\\Users\\Craftcrossing\\Desktop\\Whitted-Ray-Tracer\\Whitted Ray Tracer\\output\\output.ppm");
+	file << ppm;
+	file.close();
+}

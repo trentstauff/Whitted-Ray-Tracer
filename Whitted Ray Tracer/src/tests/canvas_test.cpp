@@ -59,8 +59,6 @@ namespace {
 		const std::string expected = "P3\n10 2\n255\n255 204 153 255 204 153 255 204 153 255 204 153 255 204 153\n255 204 153 255 204 153 255 204 153 255 204 153 255 204 153\n255 204 153 255 204 153 255 204 153 255 204 153 255 204 153\n255 204 153 255 204 153 255 204 153 255 204 153 255 204 153\n";
 
 		EXPECT_EQ(ppm.compare(expected), 0);
-		std::cout << ppm.length() << expected.length() << std::endl;
-		std::cout << ppm << std::endl;
 	}
 	
 }

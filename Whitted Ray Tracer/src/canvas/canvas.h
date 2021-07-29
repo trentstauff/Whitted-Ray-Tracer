@@ -6,6 +6,8 @@
 #include <cassert>
 #include <cmath>
 #include <string>
+#include <fstream>
+#include <iostream>
 #include <boost/algorithm/string.hpp>
 #include "../primitives/colour.h"
 
@@ -27,6 +29,7 @@ public:
 	void write_pixel(int x, int y, Colour colour);
 	std::string canvas_to_ppm();
 	void fill(Colour colour);
+	void save();
 	
 };
 #endif
