@@ -18,9 +18,14 @@ public:
 	int rows() const;
 	int columns() const;
 
-	double get(int row, int column);
-	void set(int row, int column, double val);
+	double get(int row, int column) const;
+
+	// three sets: one for individual indices,
+	// one for copying of passed array,
+	// one for initializing entire matrix to 0
+	void set(int row, int column, double val) const;
 	void set(const double arr[]) const;
+	void set() const;
 
 	int idx(int row, int column) const;
 

@@ -5,6 +5,7 @@ Matrix::Matrix()
 	_rows = 4;
 	_columns = 4;
 	_matrix = new double[_rows * _columns];
+	set();
 }
 
 Matrix::Matrix(int rows, int columns)
@@ -12,6 +13,7 @@ Matrix::Matrix(int rows, int columns)
 	_rows = rows;
 	_columns = columns;
 	_matrix = new double[_rows * _columns];
+	set();
 }
 
 Matrix::~Matrix()
@@ -29,7 +31,7 @@ int Matrix::columns() const
 	return _columns;
 }
 
-double Matrix::get(const int row, const int column)
+double Matrix::get(const int row, const int column) const
 {
 	assert(column < _columns);
 	assert(column >= 0);
@@ -39,7 +41,7 @@ double Matrix::get(const int row, const int column)
 	return _matrix[column + _columns * row];
 }
 
-void Matrix::set(const int row, const int column, const double val)
+void Matrix::set(const int row, const int column, const double val) const
 {
 	assert(column < _columns);
 	assert(column >= 0);
@@ -57,6 +59,17 @@ void Matrix::set(const double arr[]) const
 		for (int j = 0; j < _columns; j++)
 		{
 			_matrix[j + _rows*i] = arr[j + _rows * i];
+		}
+	}
+}
+
+void Matrix::set() const
+{
+	for (int i = 0; i < _rows; i++)
+	{
+		for (int j = 0; j < _columns; j++)
+		{
+			_matrix[j + _rows * i] = 0;
 		}
 	}
 }
