@@ -4,7 +4,7 @@
 
 namespace {
 
-	TEST(MatrixTest, Init) {
+	TEST(MatrixTest, Init4x4) {
 		
 		const auto matrix = Matrix(4, 4);
 
@@ -23,4 +23,40 @@ namespace {
 		EXPECT_DOUBLE_EQ(matrix(3, 2), 15.5);
 		
 	}
+
+	TEST(MatrixTest, Init2x2) {
+
+		const auto matrix = Matrix(2, 2);
+
+		double arr[] = { -3, 5, 1, -2 };
+
+		matrix.set(arr);
+
+		EXPECT_EQ(matrix.rows(), 2);
+		EXPECT_EQ(matrix.columns(), 2);
+
+		EXPECT_DOUBLE_EQ(matrix(0, 0), -3);
+		EXPECT_DOUBLE_EQ(matrix(0, 1), 5);
+		EXPECT_DOUBLE_EQ(matrix(1, 0), 1);
+		EXPECT_DOUBLE_EQ(matrix(1, 1), -2);
+
+	}
+
+	TEST(MatrixTest, Init3x3) {
+
+		const auto matrix = Matrix(3, 3);
+
+		double arr[] = { -3, 5, 0, 1, -2, -7, 0, 1, 1 };
+
+		matrix.set(arr);
+
+		EXPECT_EQ(matrix.rows(), 3);
+		EXPECT_EQ(matrix.columns(), 3);
+
+		EXPECT_DOUBLE_EQ(matrix(0, 0), -3);
+		EXPECT_DOUBLE_EQ(matrix(1, 1), -2);
+		EXPECT_DOUBLE_EQ(matrix(2, 2), 1);
+
+	}
+	
 }

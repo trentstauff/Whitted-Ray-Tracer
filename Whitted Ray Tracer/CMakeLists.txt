@@ -56,7 +56,8 @@ add_executable(tests
 	"src/tests/tuple_test.cpp"
 	"src/tests/colour_test.cpp"
 	"src/tests/canvas_test.cpp"
- "src/tests/matrix_test.cpp")
+	"src/tests/matrix_test.cpp"
+ )
 
 target_link_libraries(tests gtest_main)
 target_link_libraries(tests primitives)
