@@ -20,7 +20,7 @@ public:
 
 	double get(int row, int column);
 	void set(int row, int column, double val);
-	void set(double arr[]) const;
+	void set(const double arr[]) const;
 
 	int idx(int row, int column) const;
 

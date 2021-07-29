@@ -29,7 +29,7 @@ int Matrix::columns() const
 	return _columns;
 }
 
-double Matrix::get(int row, int column)
+double Matrix::get(const int row, const int column)
 {
 	assert(column < _columns);
 	assert(column >= 0);
@@ -39,7 +39,7 @@ double Matrix::get(int row, int column)
 	return _matrix[column + _columns * row];
 }
 
-void Matrix::set(int row, int column, double val)
+void Matrix::set(const int row, const int column, const double val)
 {
 	assert(column < _columns);
 	assert(column >= 0);
@@ -50,7 +50,7 @@ void Matrix::set(int row, int column, double val)
 }
 
 // passed array must be same size
-void Matrix::set(double arr[]) const
+void Matrix::set(const double arr[]) const
 {
 	for (int i = 0; i < _rows; i++)
 	{
@@ -61,12 +61,12 @@ void Matrix::set(double arr[]) const
 	}
 }
 
-int Matrix::idx(int row, int column) const
+int Matrix::idx(const int row, const int column) const
 {
 	return column + _columns * row;
 }
 
-double Matrix::operator()(int row, int column) const
+double Matrix::operator()(const int row, const int column) const
 {
 	return _matrix[idx(row, column)];
 }
