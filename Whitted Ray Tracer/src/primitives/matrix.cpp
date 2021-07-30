@@ -79,7 +79,43 @@ int Matrix::idx(const int row, const int column) const
 	return column + _columns * row;
 }
 
+void Matrix::print() const
+{
+	for (int i = 0; i < _rows; i++)
+	{
+		std::cout << "| ";
+		for (int j = 0; j < _columns; j++)
+		{
+			std::cout << _matrix[j + _rows * i] << " ";
+		}
+		std::cout << "|" << std::endl;
+	}
+}
+
 double Matrix::operator()(const int row, const int column) const
 {
 	return _matrix[idx(row, column)];
+}
+
+bool operator==(const Matrix& a, const Matrix& b)
+{
+	if(a.rows() != b.rows() && a.columns() != b.columns())
+	{
+		return false;
+	}
+	else
+	{
+		for (auto i = 0; i < a.rows(); i++)
+		{
+			for (auto j = 0; j < b.columns(); j++)
+			{
+				// double comparison
+				if(!fequals(a(i,j), b(i,j)))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 }

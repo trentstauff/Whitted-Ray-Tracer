@@ -1,6 +1,8 @@
 #ifndef COLOUR
 #define COLOUR
 
+#include "../helpers.h"
+
 class Colour
 {
 private:

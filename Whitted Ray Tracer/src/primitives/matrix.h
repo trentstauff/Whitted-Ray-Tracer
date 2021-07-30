@@ -2,13 +2,15 @@
 #define MATRIX
 
 #include <cassert>
+#include "../helpers.h"
+#include <iostream>
 
 class Matrix
 {
 private:
 	int _rows;
 	int _columns;
-	double* _matrix{};
+	double* _matrix;
 
 public:
 	Matrix();
@@ -29,8 +31,12 @@ public:
 
 	int idx(int row, int column) const;
 
-	double operator()(int row, int col) const;
+	void print() const;
+
+	double operator()(int row, int column) const;
 };
 
+bool operator==(const Matrix& a, const Matrix& b);
+Matrix operator*(Matrix a, Matrix b);
 
 #endif

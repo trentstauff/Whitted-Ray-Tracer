@@ -58,5 +58,25 @@ namespace {
 		EXPECT_DOUBLE_EQ(matrix(2, 2), 1);
 
 	}
+
+	TEST(MatrixTest, MatrixValueComparison) {
+		
+		const auto a = Matrix(4, 4);
+		const auto b = Matrix(4, 4);
+
+		double arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2 };
+		double arr2[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2 };
+		a.set(arr);
+		b.set(arr2);
+		
+		// expect equal
+		EXPECT_TRUE(a == a);
+		
+		b.set(0,0,99);
+
+		// expect not equal
+		EXPECT_FALSE(a == b);
+
+	}
 	
 }

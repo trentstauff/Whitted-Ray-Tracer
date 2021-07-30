@@ -1,7 +1,5 @@
 #include "./colour.h"
 
-#include "../helpers.h"
-
 Colour::Colour()
 {
 	_r = 0;
