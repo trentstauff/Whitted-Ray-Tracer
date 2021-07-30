@@ -61,8 +61,8 @@ namespace {
 
 	TEST(MatrixTest, MatrixValueComparison) {
 		
-		const auto a = Matrix(4, 4);
-		const auto b = Matrix(4, 4);
+		auto a = Matrix(4, 4);
+		auto b = Matrix(4, 4);
 
 		double arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2 };
 		double arr2[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -70,7 +70,7 @@ namespace {
 		b.set(arr2);
 		
 		// expect equal
-		EXPECT_TRUE(a == a);
+		EXPECT_TRUE(a == b);
 		
 		b.set(0,0,99);
 
@@ -78,5 +78,25 @@ namespace {
 		EXPECT_FALSE(a == b);
 
 	}
+
+	TEST(MatrixTest, MatrixMultiplication) {
+
+		auto a = Matrix(4, 4);
+		auto b = Matrix(4, 4);
+
+		double arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2 };
+		double arr2[] = { -2, 1, 2, 3, 3, 2, 1, -1, 4, 3, 6, 5, 1, 2, 7, 8 };
+		a.set(arr);
+		b.set(arr2);
+
+		double expected[] = { 20, 22, 50, 48, 44, 54, 114, 108, 40, 58, 110, 102, 16, 26, 46, 42 };
+
+		auto c = Matrix(4, 4);
+		c.set(expected);
+
+		EXPECT_TRUE((a * b) == c);
+
+	}
+	
 	
 }

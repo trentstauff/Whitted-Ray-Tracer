@@ -15,6 +15,10 @@ private:
 public:
 	Matrix();
 	Matrix(int rows, int columns);
+
+	// copy constructor
+	Matrix(const Matrix& a);
+	
 	~Matrix();
 
 	int rows() const;
@@ -36,7 +40,7 @@ public:
 	double operator()(int row, int column) const;
 };
 
-bool operator==(const Matrix& a, const Matrix& b);
-Matrix operator*(Matrix a, Matrix b);
+bool operator==(Matrix& a, Matrix& b);
+Matrix operator*(Matrix& a, Matrix& b);
 
 #endif
