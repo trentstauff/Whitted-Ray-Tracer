@@ -94,7 +94,7 @@ namespace {
 		auto c = Matrix(4, 4);
 		c.set(expected);
 
-		EXPECT_TRUE((a * b) == c);
+		EXPECT_TRUE((a*b) == c);
 
 	}
 	
