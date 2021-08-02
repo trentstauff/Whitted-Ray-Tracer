@@ -34,6 +34,11 @@ bool Tuple::is_point() const
 	return _w == 1.0;
 }
 
+void Tuple::print()
+{
+	std::cout << "(" << _x << " " << _y << " " << _z << " " << _w << ")" << std::endl;
+}
+
 bool Tuple::is_vector() const
 {
 	return _w == 0.0;

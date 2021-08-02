@@ -2,6 +2,7 @@
 #define TUPLE
 
 #include <cmath>
+#include <iostream>
 
 class Tuple
 {
@@ -22,6 +23,8 @@ public:
 
 	bool is_vector() const;
 	bool is_point() const;
+
+	void print();
 	
 };
 

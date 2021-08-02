@@ -97,6 +97,22 @@ namespace {
 		EXPECT_TRUE((a*b) == c);
 
 	}
+
+	TEST(MatrixTest, MatrixTupleMultiplication) {
+
+		auto a = Matrix(4, 4);
+		auto b = Tuple(1, 2, 3, 1);
+
+		double arr[] = { 1, 2, 3, 4, 2, 4, 4, 2, 8, 6, 4, 1, 0, 0, 0, 1 };
+		a.set(arr);
+
+		auto expected = Tuple(18,24,33,1);
+
+		auto result = a * b;
+
+		EXPECT_TRUE(result == expected);
+
+	}
 	
 	
 }

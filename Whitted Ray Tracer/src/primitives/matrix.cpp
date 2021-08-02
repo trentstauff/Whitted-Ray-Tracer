@@ -29,7 +29,7 @@ Matrix::Matrix(const Matrix& a)
 	{
 		for (int j = 0; j < _columns; j++)
 		{
-			_matrix[j + _rows * i] = a(i, j);
+			_matrix[idx(i, j)] = a(i, j);
 		}
 	}
 }
@@ -56,7 +56,7 @@ double Matrix::get(const int row, const int column) const
 	assert(row >= 0);
 	assert(row < _rows);
 	
-	return _matrix[column + _columns * row];
+	return _matrix[idx(row, column)];
 }
 
 void Matrix::set(const int row, const int column, const double val) const
@@ -66,7 +66,7 @@ void Matrix::set(const int row, const int column, const double val) const
 	assert(row >= 0);
 	assert(row < _rows);
 	
-	_matrix[column + _columns * row] = val;
+	_matrix[idx(row, column)] = val;
 }
 
 // passed array must be same size
@@ -76,7 +76,7 @@ void Matrix::set(const double arr[]) const
 	{
 		for (int j = 0; j < _columns; j++)
 		{
-			_matrix[j + _rows*i] = arr[j + _rows * i];
+			_matrix[idx(i, j)] = arr[idx(i, j)];
 		}
 	}
 }
@@ -87,7 +87,7 @@ void Matrix::set() const
 	{
 		for (int j = 0; j < _columns; j++)
 		{
-			_matrix[j + _rows * i] = 0;
+			_matrix[idx(i,j)] = 0;
 		}
 	}
 }
@@ -104,7 +104,7 @@ void Matrix::print() const
 		std::cout << "| ";
 		for (int j = 0; j < _columns; j++)
 		{
-			std::cout << _matrix[j + _rows * i] << " ";
+			std::cout << _matrix[idx(i, j)] << " ";
 		}
 		std::cout << "|" << std::endl;
 	}
@@ -159,4 +159,26 @@ Matrix operator*(Matrix& a, Matrix& b)
 	}
 
 	return result;
+}
+
+Tuple operator*(Matrix& a, Tuple& b)
+{
+	assert(a.columns() == 4);
+
+	Matrix tuple = Matrix(4, 1);
+
+	tuple.set(0, 0, b.x());
+	tuple.set(1, 0, b.y());
+	tuple.set(2, 0, b.z());
+	tuple.set(3, 0, b.w());
+
+	auto result = a * tuple;
+
+	assert(result.columns() == 1);
+	assert(result.rows() == 4);
+
+	auto temp = Tuple(result(0, 0), result(1, 0), result(2, 0), result(3, 0));
+
+	return temp;
+	
 }

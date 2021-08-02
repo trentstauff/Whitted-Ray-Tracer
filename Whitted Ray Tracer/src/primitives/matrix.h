@@ -4,6 +4,7 @@
 #include <cassert>
 #include "../helpers.h"
 #include <iostream>
+#include "./tuple.h"
 
 class Matrix
 {
@@ -42,5 +43,6 @@ public:
 
 bool operator==(Matrix& a, Matrix& b);
 Matrix operator*(Matrix& a, Matrix& b);
+Tuple operator*(Matrix& a, Tuple& b);
 
 #endif
