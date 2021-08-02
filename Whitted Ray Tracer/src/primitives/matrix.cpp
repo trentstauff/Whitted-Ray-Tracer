@@ -110,6 +110,21 @@ void Matrix::print() const
 	}
 }
 
+Matrix IdentityMatrix(const int dim)
+{
+	auto identity = Matrix(dim, dim);
+
+	for(int i = 0; i < dim; i++)
+	{
+		for(int j = 0; j < dim; j++)
+		{
+			if (i == j) identity.set(i, j, 1);
+		}
+	}
+
+	return identity;
+}
+
 double Matrix::operator()(const int row, const int column) const
 {
 	return _matrix[idx(row, column)];

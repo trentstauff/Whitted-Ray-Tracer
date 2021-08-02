@@ -113,6 +113,19 @@ namespace {
 		EXPECT_TRUE(result == expected);
 
 	}
+
+	TEST(MatrixTest, IdentityMatrix) {
+
+		auto a = Matrix(4, 4);
+
+		double arr[] = { 0, 1, 2, 4, 1, 2, 4, 8, 2, 4, 8, 16, 4, 8, 16, 32 };
+		a.set(arr);
+
+		auto result = a * IdentityMatrix(4);
+
+		EXPECT_TRUE(result == a);
+
+	}
 	
 	
 }
