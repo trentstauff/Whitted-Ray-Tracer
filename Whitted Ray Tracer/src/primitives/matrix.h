@@ -54,5 +54,6 @@ Matrix IdentityMatrix(int dim);
 bool operator==(Matrix& a, Matrix& b);
 Matrix operator*(Matrix& a, Matrix& b);
 Tuple operator*(Matrix& a, Tuple& b);
+Matrix operator/(Matrix& a, double scalar);
 
 #endif

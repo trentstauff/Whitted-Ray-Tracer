@@ -192,7 +192,7 @@ double Matrix::cofactor(int row, int column)
 	double cofactor = minor(row, column);
 
 	// if row + column is odd, we negate the sign of the cofactor
-	if(row + column % 2 != 0)
+	if((row + column) % 2 != 0)
 	{
 		cofactor *= -1;
 	}
@@ -202,10 +202,26 @@ double Matrix::cofactor(int row, int column)
 
 Matrix Matrix::inverse()
 {
-	assert(fequals(determinant(), 0));
+	auto det = determinant();
+	
+	assert(!fequals(det, 0));
+	
+	Matrix inverse = Matrix(_rows, _columns);
 
+	for (int i = 0; i < _rows; i++)
+	{
+		for (int j = 0; j < _columns; j++)
+		{
+			auto cof = cofactor(i, j);
+
+			auto transposed_val = cof / det;
+
+			// j, i transposes the values
+			inverse.set(j, i, transposed_val);
+		}
+	}
 	
-	
+	return inverse;
 }
 
 Matrix Matrix::transpose()
@@ -309,4 +325,21 @@ Tuple operator*(Matrix& a, Tuple& b)
 
 	return temp;
 	
+}
+
+Matrix operator/(Matrix& a, double scalar)
+{
+	Matrix result = Matrix(a.rows(), a.columns());
+
+	for (auto i = 0; i < a.rows(); i++)
+	{
+		for (auto j = 0; j < a.columns(); j++)
+		{
+			auto entry = a(i, j) / scalar;
+			
+			result.set(i, j, entry);
+		}
+	}
+
+	return result;
 }

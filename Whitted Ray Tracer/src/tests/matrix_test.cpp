@@ -201,7 +201,7 @@ namespace {
 		
 		auto submatrix = a.submatrix(0,2);
 
-		EXPECT_TRUE(expected == submatrix);
+		EXPECT_TRUE(submatrix == expected);
 
 		// 4x4
 		auto b = Matrix(4, 4);
@@ -214,7 +214,7 @@ namespace {
 
 		auto submatrix2 = b.submatrix(2, 1);
 
-		EXPECT_TRUE(expected2 == submatrix2);
+		EXPECT_TRUE(submatrix2 == expected2);
 
 	}
 
@@ -245,6 +245,21 @@ namespace {
 		EXPECT_TRUE(fequals(cofactor, -25));
 
 	}
-	
+
+	TEST(MatrixTest, Inverse) {
+
+		auto a = Matrix(4, 4);
+		double arr[] = { -5, 2, 6, -8, 1, -5, 1, 8, 7, 7, -6, -7, 1, -3, 7, 4 };
+		a.set(arr);
+		
+		auto result = a.inverse();
+
+		auto expected = Matrix(4, 4);
+		double arr2[] = { 0.21805, 0.45113, 0.24060, -0.04511, -0.80827, -1.45677, -0.44361, 0.52068, -0.07895, -0.22368, -0.05263, 0.19737, -0.52256, -0.81391, -0.30075, 0.30639 };
+		expected.set(arr2);
+
+		EXPECT_TRUE(result == expected);
+		
+	}
 	
 }
