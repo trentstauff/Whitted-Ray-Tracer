@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+#include "../primitives/tuple.h"
+#include "../primitives/matrix.h"
+
 namespace {
 
 	TEST(CanvasTest, Init) {
@@ -59,6 +62,30 @@ namespace {
 		const std::string expected = "P3\n10 2\n255\n255 204 153 255 204 153 255 204 153 255 204 153 255 204 153\n255 204 153 255 204 153 255 204 153 255 204 153 255 204 153\n255 204 153 255 204 153 255 204 153 255 204 153 255 204 153\n255 204 153 255 204 153 255 204 153 255 204 153 255 204 153\n";
 
 		EXPECT_EQ(ppm.compare(expected), 0);
+	}
+
+	TEST(CanvasTest, MakeClockPPM) {
+
+		auto canvas = Canvas(100, 100);
+
+		canvas.fill(Colour(0, 0, 0));
+
+		auto center_point = TranslationMatrix(50, 50, 0);
+
+		auto point = Point(0, 20, 0);
+
+		auto rotate = RotateZ((M_PI / 6));
+		
+		for(int i = 0; i < 12; i++)
+		{
+			auto translated = center_point * point;
+			canvas.write_pixel(translated.x(), translated.y(), Colour(1.5, 0, 0));
+
+			point = rotate * point;
+		}
+
+		//canvas.save();
+
 	}
 	
 }

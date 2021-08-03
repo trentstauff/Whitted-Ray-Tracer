@@ -1,9 +1,11 @@
 #ifndef MATRIX
 #define MATRIX
+#define _USE_MATH_DEFINES
 
 #include <cassert>
-#include "../helpers.h"
 #include <iostream>
+#include <math.h>
+#include "../helpers.h"
 #include "./tuple.h"
 
 class Matrix
@@ -52,6 +54,10 @@ public:
 Matrix IdentityMatrix(int dim);
 Matrix TranslationMatrix(double x, double y, double z);
 Matrix ScalingMatrix(double x, double y, double z);
+Matrix RotateX(double rad);
+Matrix RotateY(double rad);
+Matrix RotateZ(double rad);
+Matrix ShearingMatrix(double xy, double xx, double yx, double yz, double zx, double zy);
 
 bool operator==(Matrix& a, Matrix& b);
 Matrix operator*(Matrix& a, Matrix& b);

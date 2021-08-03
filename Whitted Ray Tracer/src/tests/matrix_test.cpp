@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include "../primitives/matrix.h"
 #include <iostream>
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 namespace {
 
@@ -391,6 +393,171 @@ namespace {
 		auto expected = Vector(-2, 2, 2);
 
 		EXPECT_TRUE(scaled_vector == expected);
+
+	}
+
+	TEST(MatrixTest, RotatePointXAxis) {
+
+		// eighth X rotation
+		auto point = Point(0, 1, 0);
+		
+		auto eighth = RotateX(M_PI / 4);
+		
+		auto rotated_point = eighth * point;
+
+		auto expected = Point(0, sqrt(2)/2, sqrt(2) / 2);
+
+		EXPECT_TRUE(rotated_point == expected);
+
+		// quarter X rotation
+		auto quarter = RotateX(M_PI / 2);
+		
+		rotated_point = quarter * point;
+
+		expected = Point(0, 0, 1);
+
+		EXPECT_TRUE(rotated_point == expected);
+
+		// inverse X rotation
+		auto inverse_eighth = eighth.inverse();
+		
+		rotated_point = inverse_eighth * point;
+
+		expected = Point(0, sqrt(2) / 2, -sqrt(2) / 2);
+
+		EXPECT_TRUE(rotated_point == expected);
+
+	}
+
+	TEST(MatrixTest, RotatePointYAxis) {
+
+		// eighth Y rotation
+		auto point = Point(0, 0, 1);
+
+		auto eighth = RotateY(M_PI / 4);
+
+		auto rotated_point = eighth * point;
+
+		auto expected = Point(sqrt(2) / 2, 0, sqrt(2) / 2);
+
+		EXPECT_TRUE(rotated_point == expected);
+
+		// quarter Y rotation
+		auto quarter = RotateY(M_PI / 2);
+
+		rotated_point = quarter * point;
+
+		expected = Point(1, 0, 0);
+
+		EXPECT_TRUE(rotated_point == expected);
+
+	}
+
+	TEST(MatrixTest, RotatePointZAxis) {
+
+		// eighth Z rotation
+		auto point = Point(0, 1, 0);
+
+		auto eighth = RotateZ(M_PI / 4);
+
+		auto rotated_point = eighth * point;
+
+		auto expected = Point(-sqrt(2) / 2, sqrt(2) / 2, 0);
+
+		EXPECT_TRUE(rotated_point == expected);
+
+		// quarter Z rotation
+		auto quarter = RotateZ(M_PI / 2);
+
+		rotated_point = quarter * point;
+
+		expected = Point(-1, 0, 0);
+
+		EXPECT_TRUE(rotated_point == expected);
+
+	}
+
+	TEST(MatrixTest, ShearingPointXY) {
+
+		auto point = Point(2, 3, 4);
+
+		auto transform = ShearingMatrix(1, 0, 0, 0, 0, 0);
+
+		auto sheared_point = transform * point;
+
+		auto expected = Point(5, 3, 4);
+
+		EXPECT_TRUE(sheared_point == expected);
+
+	}
+
+	TEST(MatrixTest, ShearingPointXZ) {
+
+		auto point = Point(2, 3, 4);
+
+		auto transform = ShearingMatrix(0, 1, 0, 0, 0, 0);
+
+		auto sheared_point = transform * point;
+
+		auto expected = Point(6, 3, 4);
+
+		EXPECT_TRUE(sheared_point == expected);
+
+	}
+
+	TEST(MatrixTest, ShearingPointYX) {
+
+		auto point = Point(2, 3, 4);
+
+		auto transform = ShearingMatrix(0, 0, 1, 0, 0, 0);
+
+		auto sheared_point = transform * point;
+
+		auto expected = Point(2, 5, 4);
+
+		EXPECT_TRUE(sheared_point == expected);
+
+	}
+
+	TEST(MatrixTest, ShearingPointYZ) {
+
+		auto point = Point(2, 3, 4);
+
+		auto transform = ShearingMatrix(0, 0, 0, 1, 0, 0);
+
+		auto sheared_point = transform * point;
+
+		auto expected = Point(2, 7, 4);
+
+		EXPECT_TRUE(sheared_point == expected);
+
+	}
+
+	TEST(MatrixTest, ShearingPointZX) {
+
+		auto point = Point(2, 3, 4);
+
+		auto transform = ShearingMatrix(0, 0, 0, 0, 1, 0);
+
+		auto sheared_point = transform * point;
+
+		auto expected = Point(2, 3, 6);
+
+		EXPECT_TRUE(sheared_point == expected);
+
+	}
+
+	TEST(MatrixTest, ShearingPointZY) {
+
+		auto point = Point(2, 3, 4);
+
+		auto transform = ShearingMatrix(0, 0, 0, 0, 0, 1);
+
+		auto sheared_point = transform * point;
+
+		auto expected = Point(2, 3, 7);
+
+		EXPECT_TRUE(sheared_point == expected);
 
 	}
 	

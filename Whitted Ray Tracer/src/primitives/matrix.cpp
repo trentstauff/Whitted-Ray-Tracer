@@ -255,24 +255,74 @@ Matrix IdentityMatrix(const int dim)
 
 Matrix TranslationMatrix(double x, double y, double z)
 {
-	Matrix identity = IdentityMatrix(4);
+	Matrix transform = IdentityMatrix(4);
 
-	identity.set(0, 3, x);
-	identity.set(1, 3, y);
-	identity.set(2, 3, z);
+	transform.set(0, 3, x);
+	transform.set(1, 3, y);
+	transform.set(2, 3, z);
 
-	return identity;
+	return transform;
 }
 
 Matrix ScalingMatrix(double x, double y, double z)
 {
-	Matrix identity = IdentityMatrix(4);
+	Matrix transform = IdentityMatrix(4);
 
-	identity.set(0, 0, x);
-	identity.set(1, 1, y);
-	identity.set(2, 2, z);
+	transform.set(0, 0, x);
+	transform.set(1, 1, y);
+	transform.set(2, 2, z);
 
-	return identity;
+	return transform;
+}
+
+Matrix RotateX(double rad)
+{
+	Matrix transform = IdentityMatrix(4);
+	
+	transform.set(1, 1, cos(rad));
+	transform.set(1, 2, -sin(rad));
+	transform.set(2, 1, sin(rad));
+	transform.set(2, 2, cos(rad));
+
+	return transform;
+}
+
+Matrix RotateY(double rad)
+{
+	Matrix transform = IdentityMatrix(4);
+
+	transform.set(0, 0, cos(rad));
+	transform.set(0, 2, sin(rad));
+	transform.set(2, 0, -sin(rad));
+	transform.set(2, 2, cos(rad));
+
+	return transform;
+}
+
+Matrix RotateZ(double rad)
+{
+	Matrix transform = IdentityMatrix(4);
+
+	transform.set(0, 0, cos(rad));
+	transform.set(0, 1, -sin(rad));
+	transform.set(1, 0, sin(rad));
+	transform.set(1, 1, cos(rad));
+
+	return transform;
+}
+
+Matrix ShearingMatrix(double xy, double xx, double yx, double yz, double zx, double zy)
+{
+	Matrix transform = IdentityMatrix(4);
+
+	transform.set(0, 1, xy);
+	transform.set(0, 2, xx);
+	transform.set(1, 0, yx);
+	transform.set(1, 2, yz);
+	transform.set(2, 0, zx);
+	transform.set(2, 1, zy);
+
+	return transform;
 }
 
 double Matrix::operator()(const int row, const int column) const
