@@ -164,6 +164,30 @@ namespace {
 
 	}
 
+	TEST(MatrixTest, Determinant3x3) {
+
+		auto a = Matrix(3, 3);
+		double arr[] = { 1, 2, 6, -5, 8, -4, 2, 6, 4 };
+		a.set(arr);
+
+		auto determinant = a.determinant();
+
+		EXPECT_TRUE(fequals(determinant, -196));
+
+	}
+
+	TEST(MatrixTest, Determinant4x4) {
+
+		auto a = Matrix(4, 4);
+		double arr[] = { -2, -8, 3, 5, -3, 1, 7, 3, 1, 2, -9, 6, -6, 7, 7, -9 };
+		a.set(arr);
+
+		auto determinant = a.determinant();
+
+		EXPECT_TRUE(fequals(determinant, -4071));
+
+	}
+	
 	TEST(MatrixTest, Submatrix) {
 
 		// 3x3
@@ -217,9 +241,6 @@ namespace {
 		EXPECT_TRUE(fequals(cofactor, -12));
 
 		cofactor = a.cofactor(1, 0);
-
-		std::cout << cofactor << std::endl;
-
 
 		EXPECT_TRUE(fequals(cofactor, -25));
 

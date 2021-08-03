@@ -122,7 +122,20 @@ double Matrix::determinant()
 	}
 	else
 	{
-		return 0.0;
+		auto determinant = 0.0;
+
+		// https://people.richland.edu/james/lecture/m116/matrices/determinant.html
+		// Here are the steps to go through to find the determinant.
+		// Pick any row or column in the matrix.It does not matter which row or which column you use, the answer will be the same for any row.
+		// There are some rows or columns that are easier than others, but we'll get to that later.
+		// Multiply every element in that row or column by its cofactor and add.The result is the determinant.
+		
+		for(int j = 0; j < _columns; j++)
+		{
+			determinant += _matrix[idx(0, j)] * cofactor(0, j);
+		}
+
+		return determinant;
 	}
 }
 
@@ -168,12 +181,9 @@ double Matrix::minor(int row, int column)
 {
 	assert(_rows == _columns);
 	
-	if(_rows == 3)
-	{
-		auto sub = submatrix(row, column);
-		auto det = sub.determinant();
-		return det;
-	}
+	auto sub = submatrix(row, column);
+	auto det = sub.determinant();
+	return det;
 	
 }
 
@@ -188,6 +198,14 @@ double Matrix::cofactor(int row, int column)
 	}
 
 	return cofactor;
+}
+
+Matrix Matrix::inverse()
+{
+	assert(fequals(determinant(), 0));
+
+	
+	
 }
 
 Matrix Matrix::transpose()
@@ -236,7 +254,7 @@ bool operator==(Matrix& a, Matrix& b)
 		{
 			for (auto j = 0; j < b.columns(); j++)
 			{
-				// double comparison
+				
 				if(!fequals(a(i,j), b(i,j)))
 				{
 					return false;

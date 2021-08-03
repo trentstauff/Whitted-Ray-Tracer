@@ -42,6 +42,7 @@ public:
 	Matrix submatrix(int row, int column);
 	double minor(int row, int column);
 	double cofactor(int row, int column);
+	Matrix inverse();
 
 	Matrix transpose();
 
