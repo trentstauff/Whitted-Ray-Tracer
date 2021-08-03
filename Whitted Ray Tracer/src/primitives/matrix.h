@@ -35,8 +35,15 @@ public:
 	void set() const;
 
 	int idx(int row, int column) const;
-
 	void print() const;
+
+	// inversion functions
+	double determinant();
+	Matrix submatrix(int row, int column);
+	double minor(int row, int column);
+	double cofactor(int row, int column);
+
+	Matrix transpose();
 
 	double operator()(int row, int column) const;
 };

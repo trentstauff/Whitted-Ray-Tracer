@@ -126,6 +126,104 @@ namespace {
 		EXPECT_TRUE(result == a);
 
 	}
+
+	TEST(MatrixTest, Transpose) {
+
+		auto a = Matrix(4, 4);
+
+		double arr[] = { 0, 9, 3, 0, 9, 8, 0, 8, 1, 8, 5, 3, 0, 0, 5, 8 };
+		a.set(arr);
+
+		auto result = a.transpose();
+
+		auto expected = Matrix(4,4);
+		double arr2[] = { 0, 9, 1, 0, 9, 8, 8, 0, 3, 0, 5, 5, 0, 8, 3, 8 };
+		expected.set(arr2);
+
+		EXPECT_TRUE(result == expected);
+
+	}
+
+	TEST(MatrixTest, IdentityTranspose) {
+
+		auto a = IdentityMatrix(4);
+
+		EXPECT_TRUE(a == a.transpose());
+
+	}
+
+	TEST(MatrixTest, Determinant2x2) {
+
+		auto a = Matrix(2, 2);
+		double arr[] = { 1, 5, -3, 2 };
+		a.set(arr);
+
+		auto determinant = a.determinant();
+		
+		EXPECT_TRUE(fequals(determinant, 17));
+
+	}
+
+	TEST(MatrixTest, Submatrix) {
+
+		// 3x3
+		auto a = Matrix(3, 3);
+		double arr[] = { 1, 5, 0, -3, 2, 7, 0, 6, -3 };
+		a.set(arr);
+
+		auto expected = Matrix(2, 2);
+		double arr2[] = { -3, 2, 0, 6 };
+		expected.set(arr2);
+		
+		auto submatrix = a.submatrix(0,2);
+
+		EXPECT_TRUE(expected == submatrix);
+
+		// 4x4
+		auto b = Matrix(4, 4);
+		double arr3[] = { -6, 1, 1, 6, -8, 5, 8, 6, -1, 0, 8, 2, -7, 1, -1, 1 };
+		b.set(arr3);
+
+		auto expected2 = Matrix(3, 3);
+		double arr4[] = { -6, 1, 6, -8, 8, 6, -7, -1, 1 };
+		expected2.set(arr4);
+
+		auto submatrix2 = b.submatrix(2, 1);
+
+		EXPECT_TRUE(expected2 == submatrix2);
+
+	}
+
+	TEST(MatrixTest, Minor3x3) {
+
+		auto a = Matrix(3, 3);
+		double arr[] = { 3, 5, 0, 2, -1, -7, 6, -1, 5 };
+		a.set(arr);
+
+		auto minor = a.minor(1, 0);
+
+		EXPECT_TRUE(fequals(minor, 25));
+
+	}
+
+	TEST(MatrixTest, Cofactor) {
+
+		auto a = Matrix(3, 3);
+		double arr[] = { 3, 5, 0, 2, -1, -7, 6, -1, 5 };
+		a.set(arr);
+
+		auto cofactor = a.cofactor(0, 0);
+
+		EXPECT_TRUE(fequals(cofactor, -12));
+
+		cofactor = a.cofactor(1, 0);
+
+		std::cout << cofactor << std::endl;
+
+
+		EXPECT_TRUE(fequals(cofactor, -25));
+
+	}
 	
 	
 }

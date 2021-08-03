@@ -1,5 +1,7 @@
 #include "matrix.h"
 
+#include <string>
+
 Matrix::Matrix()
 {
 	_rows = 4;
@@ -110,6 +112,98 @@ void Matrix::print() const
 	}
 }
 
+double Matrix::determinant()
+{
+	assert(_rows == _columns);
+	
+	if(_rows == 2)
+	{
+		return _matrix[idx(0, 0)] * _matrix[idx(1, 1)] - _matrix[idx(0, 1)] * _matrix[idx(1, 0)];
+	}
+	else
+	{
+		return 0.0;
+	}
+}
+
+Matrix Matrix::submatrix(int row, int column)
+{
+	assert(_rows > 1 && _columns > 1);
+	assert(row < _rows && column < _columns);
+	assert(row >= 0 && column >= 0);
+
+	Matrix result = Matrix(_rows - 1, _columns - 1);
+
+	int roffset = 0;
+	int coffset = 0;
+	
+	for (int i = 0; i < _rows; i++)
+	{
+		// reset column offset at the beginning of each row
+		coffset = 0;
+		
+		if(i != row)
+		{
+			for (int j = 0; j < _columns; j++)
+			{
+				if(j != column)
+				{
+					result.set(i - roffset, j - coffset, _matrix[idx(i, j)]);
+				}
+				else
+				{
+					coffset = 1;
+				}
+			}
+		} else
+		{
+			roffset = 1;
+		}
+	}
+	
+	return result;
+}
+
+double Matrix::minor(int row, int column)
+{
+	assert(_rows == _columns);
+	
+	if(_rows == 3)
+	{
+		auto sub = submatrix(row, column);
+		auto det = sub.determinant();
+		return det;
+	}
+	
+}
+
+double Matrix::cofactor(int row, int column)
+{
+	double cofactor = minor(row, column);
+
+	// if row + column is odd, we negate the sign of the cofactor
+	if(row + column % 2 != 0)
+	{
+		cofactor *= -1;
+	}
+
+	return cofactor;
+}
+
+Matrix Matrix::transpose()
+{
+	Matrix result = Matrix(_columns, _rows);
+
+	for (int i = 0; i < _rows; i++)
+	{
+		for (int j = 0; j < _columns; j++)
+		{
+			result.set(j, i, _matrix[idx(i, j)]);
+		}
+	}
+	return result;
+}
+
 Matrix IdentityMatrix(const int dim)
 {
 	auto identity = Matrix(dim, dim);
@@ -149,6 +243,7 @@ bool operator==(Matrix& a, Matrix& b)
 				}
 			}
 		}
+		
 		return true;
 	}
 }
