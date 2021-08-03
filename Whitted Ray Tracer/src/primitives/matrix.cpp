@@ -264,6 +264,17 @@ Matrix TranslationMatrix(double x, double y, double z)
 	return identity;
 }
 
+Matrix ScalingMatrix(double x, double y, double z)
+{
+	Matrix identity = IdentityMatrix(4);
+
+	identity.set(0, 0, x);
+	identity.set(1, 1, y);
+	identity.set(2, 2, z);
+
+	return identity;
+}
+
 double Matrix::operator()(const int row, const int column) const
 {
 	return _matrix[idx(row, column)];

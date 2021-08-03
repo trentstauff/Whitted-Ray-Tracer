@@ -346,9 +346,51 @@ namespace {
 
 		auto vector = Vector(-3, 4, 5);
 
-		auto same_vector = matrix * vector;
+		auto same_vector = transform * vector;
 
 		EXPECT_TRUE(vector == same_vector);
+
+	}
+
+	TEST(MatrixTest, ScalingMatrixTimesPoint) {
+
+		auto transform = ScalingMatrix(2, 3, 4);
+
+		auto point = Point(-4, 6, 8);
+
+		auto scaled_point = transform * point;
+
+		auto expected = Point(-8, 18, 32);
+
+		EXPECT_TRUE(scaled_point == expected);
+
+	}
+
+	TEST(MatrixTest, ScalingMatrixTimesVector) {
+
+		auto transform = ScalingMatrix(2, 3, 4);
+
+		auto vector = Vector(-4, 6, 8);
+
+		auto scaled_vector = transform * vector;
+
+		auto expected = Vector(-8, 18, 32);
+
+		EXPECT_TRUE(scaled_vector == expected);
+
+	}
+
+	TEST(MatrixTest, InverseScalingMatrixTimesVector) {
+
+		auto transform = ScalingMatrix(2, 3, 4).inverse();
+
+		auto vector = Vector(-4, 6, 8);
+
+		auto scaled_vector = transform * vector;
+
+		auto expected = Vector(-2, 2, 2);
+
+		EXPECT_TRUE(scaled_vector == expected);
 
 	}
 	
