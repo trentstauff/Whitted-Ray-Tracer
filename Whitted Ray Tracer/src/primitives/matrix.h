@@ -50,6 +50,7 @@ public:
 };
 
 Matrix IdentityMatrix(int dim);
+Matrix TranslationMatrix(double x, double y, double z);
 
 bool operator==(Matrix& a, Matrix& b);
 Matrix operator*(Matrix& a, Matrix& b);

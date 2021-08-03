@@ -311,5 +311,45 @@ namespace {
 		EXPECT_TRUE(a == d);
 
 	}
+
+	TEST(MatrixTest, TranslationMatrixTimesPoint) {
+
+		auto transform = TranslationMatrix(5, -3, 2);
+
+		auto point = Point(-3, 4, 5);
+
+		auto translated_point = transform * point;
+
+		auto expected = Point(2, 1, 7);
+		
+		EXPECT_TRUE(translated_point == expected);
+
+	}
+
+	TEST(MatrixTest, InverseTranslationMatrixTimesPoint) {
+
+		auto transform = TranslationMatrix(5, -3, 2).inverse();
+
+		auto point = Point(-3, 4, 5);
+
+		auto translated_point = transform * point;
+
+		auto expected = Point(-8, 7, 3);
+
+		EXPECT_TRUE(translated_point == expected);
+
+	}
+
+	TEST(MatrixTest, TranslationMatrixTimesVector) {
+
+		auto transform = TranslationMatrix(5, -3, 2);
+
+		auto vector = Vector(-3, 4, 5);
+
+		auto same_vector = matrix * vector;
+
+		EXPECT_TRUE(vector == same_vector);
+
+	}
 	
 }

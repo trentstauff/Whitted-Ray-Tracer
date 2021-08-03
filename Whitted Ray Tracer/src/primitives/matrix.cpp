@@ -253,6 +253,17 @@ Matrix IdentityMatrix(const int dim)
 	return identity;
 }
 
+Matrix TranslationMatrix(double x, double y, double z)
+{
+	Matrix identity = IdentityMatrix(4);
+
+	identity.set(0, 3, x);
+	identity.set(1, 3, y);
+	identity.set(2, 3, z);
+
+	return identity;
+}
+
 double Matrix::operator()(const int row, const int column) const
 {
 	return _matrix[idx(row, column)];
