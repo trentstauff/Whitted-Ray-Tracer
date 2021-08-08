@@ -39,7 +39,8 @@ add_library(
 	"src/primitives/tuple.cpp"
 	"src/primitives/colour.cpp"
 	"src/primitives/matrix.cpp"
- )
+    "src/primitives/ray.cpp"
+	)
 
 add_library(
 	helpers
@@ -51,18 +52,24 @@ add_library(
 	"src/canvas/canvas.cpp"
 )
 
+add_library(
+	shapes
+	"src/shapes/sphere.cpp"
+)
 
 add_executable(tests
 	"src/tests/tuple_test.cpp"
 	"src/tests/colour_test.cpp"
 	"src/tests/canvas_test.cpp"
 	"src/tests/matrix_test.cpp"
+	"src/tests/ray_test.cpp"
  )
 
 target_link_libraries(tests gtest_main)
 target_link_libraries(tests primitives)
 target_link_libraries(tests helpers)
 target_link_libraries(tests canvas)
+target_link_libraries(tests shapes)
 
 include(GoogleTest)
 gtest_discover_tests(tests)
