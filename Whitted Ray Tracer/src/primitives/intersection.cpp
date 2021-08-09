@@ -20,3 +20,8 @@ const void* Intersection::object()
 {
 	return _object;
 }
+
+bool operator==(Intersection a, Intersection b)
+{
+	return (fequals(a.t(), b.t())) && (a.object() == b.object());
+}

@@ -65,8 +65,8 @@ add_executable(tests
 	"src/tests/canvas_test.cpp"
 	"src/tests/matrix_test.cpp"
 	"src/tests/ray_test.cpp"
-    "src/tests/sphere_test.cpp" 
-    "src/tests/intersection_test.cpp"
+    "src/tests/sphere_test.cpp"
+	"src/tests/intersection_test.cpp"
 	)
 
 target_link_libraries(tests gtest_main)

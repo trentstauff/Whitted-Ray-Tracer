@@ -29,8 +29,11 @@ Intersections intersection(Sphere* s, Ray ray)
 		double t1 = (-b - sqrt(discriminant)) / (2 * a);
 		double t2 = (-b + sqrt(discriminant)) / (2 * a);
 
-		vector.push_back(Intersection(t1, s));
-		vector.push_back(Intersection(t2, s));
+		auto x = Intersection(t1, s);
+		auto y = Intersection(t2, s);
+		
+		vector.push_back(x);
+		vector.push_back(y);
 
 		return vector;
 	}

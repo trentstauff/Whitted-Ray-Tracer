@@ -2,6 +2,7 @@
 #define INTERSECTION
 
 #include <iostream>
+#include "../helpers.h"
 
 class Intersection
 {
@@ -18,6 +19,10 @@ public:
 	double t();
 	const void* object();
 
+
 };
+
+bool operator==(Intersection a, Intersection b);
+
 
 #endif
