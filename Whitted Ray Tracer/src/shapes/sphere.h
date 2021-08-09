@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "../primitives/ray.h"
+#include "../primitives/intersections.h"
 
 class Sphere
 {
@@ -18,8 +19,8 @@ public:
 	Sphere() = default;
 	~Sphere() = default;
 	
-	std::vector<double> intersection(Ray ray);
-
 };
+
+Intersections intersection(Sphere* s, Ray ray);
 
 #endif

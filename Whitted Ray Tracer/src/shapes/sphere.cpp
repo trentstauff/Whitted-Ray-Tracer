@@ -6,7 +6,8 @@
 // double c = DotProduct(sphere_to_ray, sphere_to_ray) - 1; ---> - 1 may need to be radius of sphere squared
 // https://en.wikipedia.org/wiki/Line%E2%80%93sphere_intersection
 // see link above for calculations and formulas
-std::vector<double> Sphere::intersection(Ray ray)
+
+Intersections intersection(Sphere* s, Ray ray)
 {
 	// vector from sphere's center to the ray's origin
 	Tuple sphere_to_ray = ray.origin() - Point(0, 0, 0);
@@ -17,19 +18,19 @@ std::vector<double> Sphere::intersection(Ray ray)
 
 	double discriminant = pow(b, 2) - (4 * a * c);
 
-	std::vector<double> vector;
-	
-	if(discriminant < 0)
+	std::vector<Intersection> vector;
+
+	if (discriminant < 0)
 	{
-		return vector;
+		return Intersections(vector);
 	}
 	else
 	{
 		double t1 = (-b - sqrt(discriminant)) / (2 * a);
 		double t2 = (-b + sqrt(discriminant)) / (2 * a);
-		
-		vector.push_back(t1);
-		vector.push_back(t2);
+
+		vector.push_back(Intersection(t1, s));
+		vector.push_back(Intersection(t2, s));
 
 		return vector;
 	}

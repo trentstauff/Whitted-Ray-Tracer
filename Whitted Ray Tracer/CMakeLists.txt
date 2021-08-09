@@ -10,7 +10,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # GoogleTest requires at least C++11
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "C:/boost_1_76_0")
 SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "C:/boost_1_76_0/stage/lib")
@@ -40,6 +40,8 @@ add_library(
 	"src/primitives/colour.cpp"
 	"src/primitives/matrix.cpp"
     "src/primitives/ray.cpp"
+	"src/primitives/intersection.cpp" 
+	"src/primitives/intersections.cpp"
 	)
 
 add_library(
@@ -63,7 +65,9 @@ add_executable(tests
 	"src/tests/canvas_test.cpp"
 	"src/tests/matrix_test.cpp"
 	"src/tests/ray_test.cpp"
- )
+    "src/tests/sphere_test.cpp" 
+    "src/tests/intersection_test.cpp"
+	)
 
 target_link_libraries(tests gtest_main)
 target_link_libraries(tests primitives)
