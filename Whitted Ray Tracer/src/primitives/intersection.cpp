@@ -1,6 +1,6 @@
 #include "./intersection.h"
 
-Intersection::Intersection(double t, void* object)
+Intersection::Intersection(double t, const void* object)
 {
 	_t = t;
 	_object = object;
@@ -16,7 +16,7 @@ double Intersection::t()
 	return _t;
 }
 
-void* Intersection::object()
+const void* Intersection::object()
 {
 	return _object;
 }

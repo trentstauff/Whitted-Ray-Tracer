@@ -15,12 +15,13 @@ std::optional<Intersection> Intersections::hit()
 {
 	std::optional<Intersection> hit = std::nullopt;
 	
-	for(Intersection x : _intersections)
+	for(auto& x : _intersections)
 	{
-		if (x.t() < 0) continue;
+
+		if ((x.t() < 0)) continue;
 		else if(hit == std::nullopt || x.t() < hit.value().t())
 		{
-			hit = x;
+			hit = std::optional<Intersection>(x);
 		}
 	}
 	

@@ -46,9 +46,6 @@ namespace {
 
 		auto i = xs.hit().value();
 
-		i1.print();
-		i.print();
-		
 		EXPECT_EQ(&i, &i1);
 
 	}

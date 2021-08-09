@@ -7,16 +7,16 @@ class Intersection
 {
 private:
 	double _t;
-	void* _object;
+	const void* _object;
 
 public:
 
-	Intersection(double t, void* object);
+	Intersection(double t, const void* object);
 
 	void print();
 	
 	double t();
-	void* object();
+	const void* object();
 
 };
 
